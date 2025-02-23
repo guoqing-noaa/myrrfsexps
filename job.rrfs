@@ -2,11 +2,12 @@
 #SBATCH -o log.fcst
 #SBATCH --job-name=fcst
 #SBATCH --account=wrfruc
-##SBATCH --account=rtwrfruc
+###SBATCH --account=rtwrfruc
 #SBATCH --qos=batch
-##SBATCH --qos=rth
+###SBATCH --qos=rth
 #SBATCH --partition=hera
-##SBATCH --partition=kjet
+###SBATCH --partition=kjet
+###SBATCH --reservation=rrfsens
 #SBATCH -t 2:00:00
 #SBATCH --nodes=40
 #SBATCH --tasks-per-node=20
