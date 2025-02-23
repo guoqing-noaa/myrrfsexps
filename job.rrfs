@@ -1,0 +1,35 @@
+#!/bin/sh
+#SBATCH -o log.fcst
+#SBATCH --job-name=fcst
+#SBATCH --account=wrfruc
+##SBATCH --account=rtwrfruc
+#SBATCH --qos=batch
+##SBATCH --qos=rth
+#SBATCH --partition=hera
+##SBATCH --partition=kjet
+#SBATCH -t 2:00:00
+#SBATCH --nodes=40
+#SBATCH --tasks-per-node=20
+
+HOMErrfs=/scratch1/BMC/wrfruc/gge/rrfs-workflow
+#HOMErrfs=/lfs6/BMC/wrfruc/gge/real-time/rrfs-workflow/workflow
+
+module purge
+source ${HOMErrfs}/workflow/ush/detect_machine.sh
+echo "run on ${MACHINE}"
+
+# ungrib, ic, lbc, fcst
+module use ${HOMErrfs}/modulefiles
+module load rrfs/${MACHINE}.intel
+
+## jedivar, getkf, ioda_bufr
+#module use ${HOMErrfs}/sorc/RDASApp/modulefiles
+#module load RDAS/${MACHINE}.intel
+#export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${HOMErrfs}/sorc/RDASApp/build/lib64
+
+ulimit -s unlimited
+ulimit -v unlimited
+ulimit -a
+srun ./atmosphere_model.x
+# srun ./init_atmosphere_model.x
+
