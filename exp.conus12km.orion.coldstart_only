@@ -22,10 +22,10 @@ export HYB_ENS_TYPE=1      # 1.rrfs; 2.GDAS; 0.TBD on the fly (rrfs->GDAS->3DVAR
 export HYB_ENS_PATH=""     # if empty, the workflow will try to find ensembles automatically
 
 export DO_CYC=false
-export CYC_INTERVAL=1
+export CYC_INTERVAL=6
 export FCST_LENGTH=3
-for i in {0..23};    do arr[$i]="03"; done # 3hr fcst
-for i in {0..23..6}; do arr[$i]="12"; done # 12hr fcst every 6hrs
+for i in {0..23};    do arr[$i]="01"; done # 1hr fcst
+for i in {0..23..6}; do arr[$i]="03"; done # 3hr fcst every 6hrs
 export FCST_LEN_HRS_CYCLES="${arr[*]}"
 export HISTORY_INTERVAL=1
 export MPASSIT_GROUP_TOTAL_NUM=1
@@ -41,7 +41,7 @@ export LBC_GROUP_TOTAL_NUM=1
 export RETRO_PERIOD="2024052700-2024052800"
 export CYCLEDEF_IC_STEP_HRS=6   # do ic jobs every step hours
 export CYCLEDEF_LBC_STEP_HRS=6  # do lbc jobs every step hours
-export COLDSTART_CYCS="00 03 06 09 12 15 18 21"   # cycles to cold start from external models
+export COLDSTART_CYCS="00 06 12 18"   # cycles to cold start from external models
 #export DO_SPINUP=true
 #export PRODSWITCH_CYCS="06 18"  # cycles to PROD switch to the spun-up ICs
 #
