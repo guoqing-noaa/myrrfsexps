@@ -4,10 +4,10 @@
 export NET=rrfs                    # rrfs, rtma, 
 export MESH_NAME=conus3km         # conus12km, conus3km, atl3km, etc
 export WGF="det"   # working group function = "det", "enkf", "ens", "firewx"
-export EXP_NAME=cyc_3km
+export EXP_NAME=3kmt133q133uv233
 export VERSION=$(cat ./VERSION)
 export TAG=d3km
-export OPSROOT=/gpfs/f6/bil-fire10-oar/world-shared/gge/OPSROOT/${EXP_NAME}
+export OPSROOT=/gpfs/f6/bil-pmp-oar/world-shared/gge/OPSROOT/${EXP_NAME}
 export EXPDIR=${OPSROOT}/exp/rrfs${WGF}
 export COMROOT=${OPSROOT}/com      # task input and output data as well as logs
 export DATAROOT=${OPSROOT}/stmp    # task workdirs ($DATA) which to be removed immediately upon task completion unless KEEPDATA=yes
@@ -19,7 +19,7 @@ export DO_JEDI=true
 export COLDSTART_CYCS_DO_DA=false
 export HYB_WGT_ENS=1.0
 export HYB_WGT_STATIC=0.0
-export HYB_ENS_TYPE=2      # 1.rrfs; 2.interpolated GEFS/GDAS; 0.TBD on the fly (rrfs->GDAS->3DVAR)
+export HYB_ENS_TYPE=1      # 1.rrfs; 2.interpolated GEFS/GDAS; 0.TBD on the fly (rrfs->GDAS->3DVAR)
 export HYB_ENS_PATH=""     # if empty, the workflow will try to find ensembles automatically
 export DO_ENVAR_RADAR_REF=false
 export RADARREFL_TIMELEVEL="00"  # 00 15 30 45 min
@@ -113,7 +113,7 @@ case ${MACHINE} in
     export LBC_EXTRN_MDL_BASEDIR=${IC_EXTRN_MDL_BASEDIR}
     export OBSPATH="/gpfs/f6/bil-fire10-oar/world-shared/RRFS2_RETRO_DATA/May2024/obs_rap"
     export OBSPATH_NSSLMOSIAC="/gpfs/f6/bil-fire10-oar/world-shared/RRFS2_RETRO_DATA/May2024/reflectivity"
-    export ACCOUNT="bil-fire10-oar"
+    export ACCOUNT="bil-pmp-oar"
     export QUEUE="normal"
     export PARTITION="batch"
     export CLUSTER="c6"
