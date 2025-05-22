@@ -19,10 +19,11 @@ export DO_JEDI=true
 export COLDSTART_CYCS_DO_DA=false
 export HYB_WGT_ENS=1.0
 export HYB_WGT_STATIC=0.0
-export HYB_ENS_TYPE=1      # 1.rrfs; 2.interpolated GEFS/GDAS; 0.TBD on the fly (rrfs->GDAS->3DVAR)
+export HYB_ENS_TYPE=2      # 1.rrfs; 2.interpolated GEFS/GDAS; 0.TBD on the fly (rrfs->GDAS->3DVAR)
 export HYB_ENS_PATH="/gpfs/f6/bil-pmp/world-shared/gge/OPSROOT/bec12km_restart/com/rrfs/v2.1.1"     # if empty, the workflow will try to find ensembles automatically
 export DO_ENVAR_RADAR_REF=false
 export RADARREFL_TIMELEVEL="00"  # 00 15 30 45 min
+export ENS_SIZE=30
 
 export DO_CYC=true
 export CYC_INTERVAL=1
@@ -30,7 +31,6 @@ for i in {0..23};    do arr[$i]="03"; done # 3hr fcst
 for i in {0..23..12}; do arr[$i]="12"; done # 12hr fcst every 12hrs
 export FCST_LEN_HRS_CYCLES="${arr[*]}"
 export HISTORY_INTERVAL=1
-export RESTART_INTERVAL=1
 export MPASSIT_GROUP_TOTAL_NUM=1
 export UPP_GROUP_TOTAL_NUM=1
 
@@ -69,7 +69,7 @@ export WALLTIME_MPASSIT="1:00:00"
 export WALLTIME_UPP="1:00:00"
 export WALLTIME_JEDIVAR="00:30:00"
 #
-export KEEPDATA=yes
+export KEEPDATA=no
 export MPI_RUN_CMD=srun
 #
 # local.setup: setup some local options specific to a platform or an experiment

@@ -13,7 +13,7 @@ export COMROOT=${OPSROOT}/com      # task input and output data as well as logs
 export DATAROOT=${OPSROOT}/stmp    # task workdirs ($DATA) which to be removed immediately upon task completion unless KEEPDATA=yes
 #
 export DO_ENSEMBLE=true
-export IC_ONLY=false  # interpolate GEFS/GDAS to the target mesh to provide ensemble BEC
+export IC_ONLY=true  # interpolate GEFS/GDAS to the target mesh to provide ensemble BEC
 export DO_DETERMINISTIC=false
 export ENS_SIZE=30
 export ZETA_LEVELS="L60.txt"
