@@ -7,7 +7,7 @@ export WGF="det"   # working group function = "det", "enkf", "ens", "firewx"
 export EXP_NAME=f12km
 export VERSION=$(cat ./VERSION)
 export TAG=d12km
-export OPSROOT=/gpfs/f6/bil-fire10-oar/world-shared/gge/rrfs2/mpas_stream_test/${EXP_NAME}
+export OPSROOT=/gpfs/f6/bil-fire10-oar/world-shared/gge/rrfs2/model_test/${EXP_NAME}
 export EXPDIR=${OPSROOT}/exp/rrfs${WGF}
 export COMROOT=${OPSROOT}/com      # task input and output data as well as logs
 export DATAROOT=${OPSROOT}/stmp    # task workdirs ($DATA) which to be removed immediately upon task completion unless KEEPDATA=yes
@@ -28,9 +28,9 @@ export ENS_BEC_LOOK_BACK_HRS=1  # define the hours going back for ensemble forec
 
 export DO_CYC=false
 export DO_POST=false
-export CYC_INTERVAL=6
+export CYC_INTERVAL=1
 for i in {0..23};    do arr[$i]="03"; done # 3hr fcst
-for i in {0..23..3}; do arr[$i]="12"; done # 12hr fcst every 12hrs
+for i in {0..23..3}; do arr[$i]="03"; done # 12hr fcst every 12hrs
 export FCST_LEN_HRS_CYCLES="${arr[*]}"
 export HISTORY_INTERVAL=1
 export MPASSIT_GROUP_TOTAL_NUM=1
