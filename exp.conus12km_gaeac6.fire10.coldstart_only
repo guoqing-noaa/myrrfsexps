@@ -4,10 +4,10 @@
 export NET=rrfs                    # rrfs, rtma, 
 export MESH_NAME=conus12km         # conus12km, conus3km, atl3km, etc
 export WGF="det"   # working group function = "det", "enkf", "ens", "firewx"
-export EXP_NAME=model_test
+export EXP_NAME=f12km
 export VERSION=$(cat ./VERSION)
 export TAG=d12km
-export OPSROOT=/gpfs/f6/bil-fire10-oar/world-shared/gge/OPSROOT/${EXP_NAME}
+export OPSROOT=/gpfs/f6/bil-fire10-oar/world-shared/gge/rrfs2/mpas_stream_test/${EXP_NAME}
 export EXPDIR=${OPSROOT}/exp/rrfs${WGF}
 export COMROOT=${OPSROOT}/com      # task input and output data as well as logs
 export DATAROOT=${OPSROOT}/stmp    # task workdirs ($DATA) which to be removed immediately upon task completion unless KEEPDATA=yes
