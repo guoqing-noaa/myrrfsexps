@@ -27,16 +27,17 @@ export ENS_SIZE=30
 export ENS_BEC_LOOK_BACK_HRS=3  # define the hours going back for ensemble forecast files for the ensemble BEC
 
 export DO_CYC=true
+export DO_POST=false
 export CYC_INTERVAL=1
 for i in {0..23};    do arr[$i]="03"; done # 3hr fcst
-for i in {0..23..12}; do arr[$i]="12"; done # 12hr fcst every 12hrs
+for i in {0..23..12}; do arr[$i]="03"; done # 12hr fcst every 12hrs
 export FCST_LEN_HRS_CYCLES="${arr[*]}"
 export HISTORY_INTERVAL=1
 export MPASSIT_GROUP_TOTAL_NUM=2
 export UPP_GROUP_TOTAL_NUM=2
 
-export IC_OFFSET=0
-export LBC_OFFSET=0
+export IC_OFFSET=6
+export LBC_OFFSET=6
 export LBC_LENGTH=15
 export LBC_INTERVAL=1
 export LBC_UNGRIB_GROUP_TOTAL_NUM=2
@@ -69,7 +70,7 @@ export WALLTIME_MPASSIT="2:00:00"
 export WALLTIME_UPP="2:00:00"
 export WALLTIME_JEDIVAR="00:30:00"
 #
-export KEEPDATA=yes
+export KEEPDATA=no
 export MPI_RUN_CMD=srun
 #
 # local.setup: setup some local options specific to a platform or an experiment
@@ -91,14 +92,25 @@ case ${MACHINE} in
     export QUEUE="batch"
     export PARTITION="hera"
     ;;
+  "ursa")
+    export IC_EXTRN_MDL_BASEDIR="/scratch4/BMC/rtrr/RRFS2_RETRO_DATA/May2024/GFS"
+    export LBC_EXTRN_MDL_BASEDIR=${IC_EXTRN_MDL_BASEDIR}
+    export OBSPATH="/scratch4/BMC/rtrr/RRFS2_RETRO_DATA/May2024/obs_rap"
+    export OBSPATH_NSSLMOSIAC="/scratch4/BMC/rtrr/RRFS2_RETRO_DATA/May2024/reflectivity"
+    export ACCOUNT="wrfruc"
+    export QUEUE="batch"
+    export PARTITION="u1-compute"
+    ;;
   "jet")
     export IC_EXTRN_MDL_BASEDIR="/lfs5/BMC/nrtrr/RRFS2_RETRO_DATA/May2024/GFS"
     export LBC_EXTRN_MDL_BASEDIR=${IC_EXTRN_MDL_BASEDIR}
     export OBSPATH="/lfs5/BMC/nrtrr/RRFS2_RETRO_DATA/May2024/obs_rap"
     export OBSPATH_NSSLMOSIAC="/lfs5/BMC/nrtrr/RRFS2_RETRO_DATA/May2024/reflectivity"
-    export ACCOUNT="nrtrr"
-    export QUEUE="batch"
+    export ACCOUNT="rtwrfruc"
+    export QUEUE="rth"
     export PARTITION="kjet"
+    export RESERVATION="rrfsens"
+    export RESERVATION_CLEAN=${RESERVATION}
     ;;
   "orion"|"hercules")
     export IC_EXTRN_MDL_BASEDIR="/work2/noaa/wrfruc/RRFS2_RETRO_DATA/May2024/GFS"
@@ -115,10 +127,20 @@ case ${MACHINE} in
     export LBC_EXTRN_MDL_BASEDIR=${IC_EXTRN_MDL_BASEDIR}
     export OBSPATH="/gpfs/f6/bil-fire10-oar/world-shared/RRFS2_RETRO_DATA/May2024/obs_rap"
     export OBSPATH_NSSLMOSIAC="/gpfs/f6/bil-fire10-oar/world-shared/RRFS2_RETRO_DATA/May2024/reflectivity"
-    export ACCOUNT="bil-pmp"
+    export ACCOUNT="bil-fire10-oar"
     export QUEUE="normal"
     export PARTITION="batch"
     export CLUSTER="c6"
+    ;;
+  "wcoss2")
+    export IC_EXTRN_MDL_BASEDIR="/lfs/h2/emc/da/noscrub/samuel.degelia/RRFS2_RETRO_DATA/May2024/GFS"
+    export LBC_EXTRN_MDL_BASEDIR=${IC_EXTRN_MDL_BASEDIR}
+    export OBSPATH="/lfs/h2/emc/da/noscrub/samuel.degelia/RRFS2_RETRO_DATA/May2024/obs_rap"
+    export OBSPATH_NSSLMOSAIC="/lfs/h2/emc/da/noscrub/samuel.degelia/RRFS2_RETRO_DATA/May2024/reflectivity"
+    export ACCOUNT="RRFS-DEV"
+    export QUEUE="dev"
+    export PARTITION=""
+    export CLUSTER=""
     ;;
   *)
     echo "!!! unsupported platform:'${MACHINE}'!!!"
