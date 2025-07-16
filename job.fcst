@@ -1,22 +1,21 @@
 #!/bin/sh
 #SBATCH -o job.log
 #SBATCH --job-name=fcst
-#SBATCH --account=wrfruc
+#SBATCH --account=bil-fire10-oar
 ###SBATCH --account=rtwrfruc
-###SBATCH --qos=normal
-#SBATCH --qos=batch
+#SBATCH --qos=normal
+###SBATCH --qos=batch
 ###SBATCH --qos=rth
 ###SBATCH --partition=batch
 #SBATCH --partition=hera
 ###SBATCH --partition=kjet
 ###SBATCH --reservation=rrfsens
-###SBATCH --cluster=c6
+#SBATCH --cluster=c6
 #SBATCH -t 2:00:00
 #SBATCH --nodes=40
 #SBATCH --tasks-per-node=20
 
-HOMErrfs=/scratch1/BMC/wrfruc/gge/rrfs-workflow
-
+HOMErrfs=/gpfs/f6/bil-fire10-oar/world-shared/gge/rrfs2/jedivar_crash/rrfs-workflow.20250711
 module purge
 source ${HOMErrfs}/workflow/ush/detect_machine.sh
 echo "run on ${MACHINE}"
