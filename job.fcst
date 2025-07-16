@@ -6,14 +6,14 @@
 #SBATCH --qos=normal
 ###SBATCH --qos=batch
 ###SBATCH --qos=rth
-###SBATCH --partition=batch
-#SBATCH --partition=hera
+#SBATCH --partition=batch
+###SBATCH --partition=hera
 ###SBATCH --partition=kjet
 ###SBATCH --reservation=rrfsens
 #SBATCH --cluster=c6
 #SBATCH -t 2:00:00
-#SBATCH --nodes=40
-#SBATCH --tasks-per-node=20
+#SBATCH --nodes=2
+#SBATCH --tasks-per-node=40 #for conus12km mpas fcsts
 
 HOMErrfs=/gpfs/f6/bil-fire10-oar/world-shared/gge/rrfs2/jedivar_crash/rrfs-workflow.20250711
 module purge
