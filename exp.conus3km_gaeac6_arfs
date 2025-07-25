@@ -4,10 +4,10 @@
 export NET=rrfs                    # rrfs, rtma, 
 export MESH_NAME=conus3km         # conus12km, conus3km, south3.5km, etc
 export WGF="det"   # working group function = "det", "enkf", "ens", "firewx"
-export EXP_NAME=cyc3km
+export EXP_NAME=133tquv
 export VERSION=$(cat ./VERSION)
 export TAG=d3km
-export OPSROOT=/gpfs/f6/arfs-gsl/world-shared/gge/OPSROOT/${EXP_NAME}
+export OPSROOT=/gpfs/f6/arfs-gsl/world-shared/gge/rrfs2/conus3km.3denvar/${EXP_NAME}
 export EXPDIR=${OPSROOT}/exp/rrfs${WGF}
 export COMROOT=${OPSROOT}/com      # task input and output data as well as logs
 export DATAROOT=${OPSROOT}/stmp    # task workdirs ($DATA) which to be removed immediately upon task completion unless KEEPDATA=yes
