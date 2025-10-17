@@ -4,10 +4,10 @@
 export NET=rrfs                    # rrfs, rtma, 
 export MESH_NAME=conus12km         # conus12km, conus3km, south3.5km, etc
 export WGF="det"   # working group function = "det", "enkf", "ens", "firewx"
-export EXP_NAME=133tquv
+export EXP_NAME=test12km
 export VERSION=$(cat ./VERSION)
 export TAG=d12km
-export OPSROOT=/gpfs/f6/arfs-gsl/world-shared/gge/rrfs2/conus12km/${EXP_NAME}
+export OPSROOT=/gpfs/f6/arfs-gsl/world-shared/gge/rrfs2/PR2rrfs-workflow/${EXP_NAME}
 export EXPDIR=${OPSROOT}/exp/rrfs${WGF}
 export COMROOT=${OPSROOT}/com      # task input and output data as well as logs
 export DATAROOT=${OPSROOT}/stmp    # task workdirs ($DATA) which to be removed immediately upon task completion unless KEEPDATA=yes
@@ -26,6 +26,18 @@ export RADARREFL_TIMELEVEL="00"  # 00 15 30 45 min
 export ENS_SIZE=30
 export ENS_BEC_LOOK_BACK_HRS=1  # define the hours going back for ensemble forecast files for the ensemble BEC
 
+export STATIC_BEC_MODEL="GSIBEC" # the static bec model, GSIBEC and BUMPBEC
+export GSIBEC_X=8 #GSIBEC_X * GSIBEC_Y should match the number of MPI tasks
+export GSIBEC_Y=10
+export GSIBEC_NLAT=252
+export GSIBEC_NLON=420
+export GSIBEC_NORTH_POLE_LAT=128.500001
+export GSIBEC_NORTH_POLE_LON=82.500018
+export GSIBEC_LON_START=-50.033098
+export GSIBEC_LON_END=50.033098
+export GSIBEC_LAT_START=-29.335138
+export GSIBEC_LAT_END=29.335138
+
 export DO_CYC=true
 export CYC_INTERVAL=1
 for i in {0..23};    do arr[$i]="01"; done # 3hr fcst
@@ -42,7 +54,7 @@ export LBC_INTERVAL=1
 export LBC_UNGRIB_GROUP_TOTAL_NUM=1
 export LBC_GROUP_TOTAL_NUM=1
 
-export RETRO_PERIOD="2024050600-2024051223"
+export RETRO_PERIOD="2024050600-2024050606"
 export CYCLEDEF_IC_STEP_HRS=12  # do ic jobs every step hours
 export CYCLEDEF_LBC_STEP_HRS=12  # do lbc jobs every step hours
 export COLDSTART_CYCS="00 12"   # cycles to cold start from external models
