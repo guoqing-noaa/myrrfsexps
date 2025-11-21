@@ -31,25 +31,27 @@ export LBC_INTERVAL=1
 export LBC_UNGRIB_GROUP_TOTAL_NUM=4
 export LBC_GROUP_TOTAL_NUM=4
 
-export RETRO_PERIOD="2024050600-2024050600"
+export RETRO_PERIOD="2025111900-2025111918"
 export LBC_CYCS="00 06 12 18"  # evenly divide 24 hours, e.g., "00 12", "00 06 12 18", etc
-#export COLDSTART_CYCS="00 06 12 18"   # cycles to cold start from external models
-export COLDSTART_CYCS="12"   # cycles to cold start from external models
+export COLDSTART_CYCS="00 06 12 18"   # cycles to cold start from external models
 #
-export NODES_IC="<nodes>40:ppn=40</nodes>"
-export NODES_LBC="<nodes>40:ppn=40</nodes>"
-export NODES_FCST="<nodes>40:ppn=40</nodes>"
-export NODES_MPASSIT="<nodes>4:ppn=20</nodes>"
-export NODES_UPP="<nodes>4:ppn=20</nodes>"
-export NODES_JEDIVAR="<nodes>80:ppn=10</nodes>"
-#
+export ACCOUNT="wrfruc"
+export QUEUE="batch"
+export PARTITION="u1-compute"
+
+export NODES_IC="<nodes>10:ppn=160</nodes>"
+export NODES_LBC="<nodes>10:ppn=160</nodes>"
+export NODES_FCST="<nodes>10:ppn=160</nodes>"
+export NODES_MPASSIT="<nodes>1:ppn=160</nodes>"
+export NODES_UPP="<nodes>1:ppn=80</nodes>"
+
 export WALLTIME_FCST="2:00:00"
 export WALLTIME_SAVE_FCST="2:00:00"
 export WALLTIME_MPASSIT="2:00:00"
 export WALLTIME_UPP="2:00:00"
-export WALLTIME_JEDIVAR="00:30:00"
 #
 export KEEPDATA=NO
+export SOURCE_CONFIG_CHEMISTRY=false
 #
 # local.setup: setup some local options specific to a platform or an experiment
 #
@@ -60,16 +62,6 @@ export LBC_EXTRN_MDL_NAME=${IC_EXTRN_MDL_NAME}
 export LBC_EXTRN_MDL_NAME_PATTERN=${IC_EXTRN_MDL_NAME_PATTERN}
 export IC_EXTRN_MDL_BASEDIR="/scratch4/BMC/rtrr/RRFS2_RETRO_DATA/Nov2025/RRFS"
 export LBC_EXTRN_MDL_BASEDIR=${IC_EXTRN_MDL_BASEDIR}
-export ACCOUNT="wrfruc"
-export QUEUE="batch"
-export PARTITION="u1-compute"
-
-export NODES_IC="<nodes>10:ppn=160</nodes>"
-export NODES_LBC="<nodes>10:ppn=160</nodes>"
-export NODES_FCST="<nodes>10:ppn=160</nodes>"
-export NODES_MPASSIT="<nodes>1:ppn=160</nodes>"
-export NODES_UPP="<nodes>1:ppn=80</nodes>"
-export NODES_JEDIVAR="<nodes>20:ppn=40</nodes>"
 #
 export DO_CLEAN=true
 #
@@ -87,4 +79,3 @@ export CHEM_INPUT="/scratch4/BMC/acomp/cheMPAS-Fire/input"
 export RAVE_INPUT="/scratch4/BMC/rtrr/RRFS2_RETRO_DATA/Nov2025/RRFS/3km_fire_emissions"
 export REGRID_WRAPPER_DIR="/scratch4/BMC/acomp/Sudheer/Fire-nest/RRFS-SD/Tools/regrid-wrapper"
 export REGRID_CONDA_ENV="/scratch4/BMC/acomp/Sudheer/anaconda3Ursa/envs/regrid-wrapper"
-export SOURCE_CONFIG_CHEMISTRY=false
