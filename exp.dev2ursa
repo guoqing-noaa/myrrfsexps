@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+# Aloha! This file is to setup some top level experiment options
+#
+# shellcheck disable=all
+export NET=rrfs                    # rrfs, rtma, 
+export MESH_NAME=conus3km         # conus12km, conus3km, south3.5km, etc
+export WGF="det"   # working group function = "det", "enkf", "ens", "firewx"
+export EXP_NAME=dev2
+export VERSION=$(cat ./VERSION)
+export TAG=dev2
+export OPSROOT=/scratch3/BMC/wrfruc/gge/rrfs2/regressionTests/${EXP_NAME}
+export EXPDIR=${OPSROOT}/exp/rrfs${WGF}
+export COMROOT=${OPSROOT}/com      # task input and output data as well as logs
+export DATAROOT=${OPSROOT}/stmp    # task workdirs ($DATA) which to be removed immediately upon task completion unless KEEPDATA=YES
+#
+export REALTIME=false     # true, false
+export ZETA_LEVELS="L60.txt"
+#
+export DO_CHEMISTRY=false
+for i in {0..23};    do arr[$i]="03"; done # 3hr fcst
+for i in {0..23..6}; do arr[$i]="24"; done # 24hr fcst every 6hrs
+export FCST_LEN_HRS_CYCLES="${arr[*]}"
+export HISTORY_INTERVAL=1
+export MPASSIT_GROUP_TOTAL_NUM=2
+export UPP_GROUP_TOTAL_NUM=2
+
+export IC_OFFSET=0
+export LBC_OFFSET=0
+export LBC_LENGTH=24
+export LBC_INTERVAL=1
+export LBC_UNGRIB_GROUP_TOTAL_NUM=4
+export LBC_GROUP_TOTAL_NUM=4
+
+export RETRO_PERIOD="2024050600-2024050600"
+export LBC_CYCS="00 06 12 18"  # evenly divide 24 hours, e.g., "00 12", "00 06 12 18", etc
+#export COLDSTART_CYCS="00 06 12 18"   # cycles to cold start from external models
+export COLDSTART_CYCS="12"   # cycles to cold start from external models
+#
+export NODES_IC="<nodes>40:ppn=40</nodes>"
+export NODES_LBC="<nodes>40:ppn=40</nodes>"
+export NODES_FCST="<nodes>40:ppn=40</nodes>"
+export NODES_MPASSIT="<nodes>4:ppn=20</nodes>"
+export NODES_UPP="<nodes>4:ppn=20</nodes>"
+export NODES_JEDIVAR="<nodes>80:ppn=10</nodes>"
+#
+export WALLTIME_FCST="2:00:00"
+export WALLTIME_SAVE_FCST="2:00:00"
+export WALLTIME_MPASSIT="2:00:00"
+export WALLTIME_UPP="2:00:00"
+export WALLTIME_JEDIVAR="00:30:00"
+#
+export KEEPDATA=NO
+#
+# local.setup: setup some local options specific to a platform or an experiment
+#
+# set up IC, LBC sources and A/Q/P/R information
+export IC_EXTRN_MDL_NAME="RRFS"
+export IC_EXTRN_MDL_NAME_PATTERN="rrfs.@Y@m@d/@H/rrfs.t@Hz.natlev.3km.ffHHH.na.grib2"
+export LBC_EXTRN_MDL_NAME=${IC_EXTRN_MDL_NAME}
+export LBC_EXTRN_MDL_NAME_PATTERN=${IC_EXTRN_MDL_NAME_PATTERN}
+export IC_EXTRN_MDL_BASEDIR="/scratch4/BMC/rtrr/RRFS2_RETRO_DATA/Nov2025/RRFS"
+export LBC_EXTRN_MDL_BASEDIR=${IC_EXTRN_MDL_BASEDIR}
+export ACCOUNT="wrfruc"
+export QUEUE="batch"
+export PARTITION="u1-compute"
+
+export NODES_IC="<nodes>10:ppn=160</nodes>"
+export NODES_LBC="<nodes>10:ppn=160</nodes>"
+export NODES_FCST="<nodes>10:ppn=160</nodes>"
+export NODES_MPASSIT="<nodes>1:ppn=160</nodes>"
+export NODES_UPP="<nodes>1:ppn=80</nodes>"
+export NODES_JEDIVAR="<nodes>20:ppn=40</nodes>"
+#
+export DO_CLEAN=true
+#
+export CHEM_GROUPS="smoke,dust" # any combinations of "smoke, anthro, pollen, dust, rwc"
+export EBB_DCYCLE=1
+export USE_EXTERNAL_CHEM_LBCS=true
+export USE_EXTERNAL_CHEM_ICS=true
+#
+export WALLTIME_PREP_CHEM="00:30:00"
+export PARTITION_PREP_CHEM="u1-compute"
+export NODES_PREP_CHEM="<nodes>1:ppn=150</nodes>"
+export MEMORY_PREP_CHEM="200G"
+#
+export CHEM_INPUT="/scratch4/BMC/acomp/cheMPAS-Fire/input"
+export RAVE_INPUT="/scratch4/BMC/rtrr/RRFS2_RETRO_DATA/Nov2025/RRFS/3km_fire_emissions"
+export REGRID_WRAPPER_DIR="/scratch4/BMC/acomp/Sudheer/Fire-nest/RRFS-SD/Tools/regrid-wrapper"
+export REGRID_CONDA_ENV="/scratch4/BMC/acomp/Sudheer/anaconda3Ursa/envs/regrid-wrapper"
+export SOURCE_CONFIG_CHEMISTRY=false
