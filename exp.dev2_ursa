@@ -28,8 +28,8 @@ export IC_OFFSET=0
 export LBC_OFFSET=0
 export LBC_LENGTH=24
 export LBC_INTERVAL=1
-export LBC_UNGRIB_GROUP_TOTAL_NUM=4
-export LBC_GROUP_TOTAL_NUM=4
+export LBC_UNGRIB_GROUP_TOTAL_NUM=8
+export LBC_GROUP_TOTAL_NUM=8
 
 export RETRO_PERIOD="2025111900-2025111918"
 export LBC_CYCS="00 06 12 18"  # evenly divide 24 hours, e.g., "00 12", "00 06 12 18", etc
@@ -57,13 +57,13 @@ export SOURCE_CONFIG_CHEMISTRY=false
 #
 # set up IC, LBC sources and A/Q/P/R information
 export IC_EXTRN_MDL_NAME="RRFS"
-export IC_EXTRN_MDL_NAME_PATTERN="rrfs.@Y@m@d/@H/rrfs.t@Hz.natlev.3km.ffHHH.na.grib2"
+export IC_EXTRN_MDL_FILENAME_PATTERN="rrfs.@Y@m@d/@H/rrfs.t@Hz.natlev.3km.ffHHH.na.grib2"
 export LBC_EXTRN_MDL_NAME=${IC_EXTRN_MDL_NAME}
-export LBC_EXTRN_MDL_NAME_PATTERN=${IC_EXTRN_MDL_NAME_PATTERN}
+export LBC_EXTRN_MDL_FILENAME_PATTERN=${IC_EXTRN_MDL_FILENAME_PATTERN}
 export IC_EXTRN_MDL_BASEDIR="/scratch4/BMC/rtrr/RRFS2_RETRO_DATA/Nov2025/RRFS"
 export LBC_EXTRN_MDL_BASEDIR=${IC_EXTRN_MDL_BASEDIR}
 #
-export DO_CLEAN=true
+export DO_CLEAN=false
 #
 export CHEM_GROUPS="smoke,dust" # any combinations of "smoke, anthro, pollen, dust, rwc"
 export EBB_DCYCLE=1
