@@ -12,7 +12,7 @@ export EXPDIR=${OPSROOT}/exp/rrfs${WGF}
 export COMROOT=${OPSROOT}/com      # task input and output data as well as logs
 export DATAROOT=${OPSROOT}/stmp    # task workdirs ($DATA) which to be removed immediately upon task completion unless KEEPDATA=YES
 #
-export ZETA_LEVELS="L126.txt"
+export ZETA_LEVELS="L125.txt"
 export PHYSICS_SUITE="mpas_global"
 #export DO_CLEAN=true
 #
